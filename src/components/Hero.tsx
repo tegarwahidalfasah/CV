@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, MapPin, Aperture, Mail } from "lucide-react";
 import { profile, disciplines } from "../data";
 import { InstagramIcon } from "./Icons";
-import portrait from "../assets/portrait.jpg";
+import portrait from "../assets/portrait.png";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
