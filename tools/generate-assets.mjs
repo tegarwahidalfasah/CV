@@ -4,6 +4,7 @@
  *
  * Menghasilkan:
  *   src/assets/portrait.webp      → potret hero terkompresi (dipakai Hero.tsx)
+ *   src/assets/works/*.webp       → gambar section Karya (sumber: tools/works-src/)
  *   public/favicon.ico            → ikon tab (16/32/48 px)
  *   public/favicon-32x32.png      → ikon tab PNG
  *   public/apple-touch-icon.png   → ikon iOS (180 px, full-bleed)
@@ -26,6 +27,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const FONTS = path.join(ROOT, "tools/fonts");
 const SRC_ASSETS = path.join(ROOT, "src/assets");
 const PUBLIC = path.join(ROOT, "public");
+const WORKS_SRC = path.join(ROOT, "tools/works-src");
+const WORKS_OUT = path.join(ROOT, "src/assets/works");
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), "cv-assets-"));
 
 /* ------------------------------------------------------- warna (src/index.css)
@@ -126,7 +129,54 @@ function buildPortrait() {
   console.log(`✓ portrait.webp     ${px(output)}   ${kb(size(input))} → ${kb(size(output))}  (-${saved}%)`);
 }
 
-/* ---------------------------------------------- 2. ikon situs (favicon) ----- */
+/* --------------------------- 2. gambar section Karya (tools/works-src/) ----- */
+
+const WORKS_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp"]);
+
+/**
+ * Setiap file di tools/works-src/ (jpg/jpeg/png/webp) dikompres menjadi
+ * src/assets/works/<nama-berkas>.webp — maks. 1400 px, kualitas 82.
+ *
+ * Beri nama sumber mengikuti urutan kartu di `works` (src/data.ts), mis.
+ * `01-adventure.jpg` … `06-design.jpg`, agar mudah dicocokkan dengan
+ * import-nya. Folder yang absen atau kosong tidak masalah: fungsi ini
+ * dilewati tanpa error, jadi `npm run assets` tetap aman dijalankan.
+ */
+function buildWorks() {
+  if (!fs.existsSync(WORKS_SRC)) {
+    console.log("– works/              (lewati — tools/works-src/ belum ada)");
+    return;
+  }
+  const sources = fs
+    .readdirSync(WORKS_SRC)
+    .filter((f) => WORKS_EXTS.has(path.extname(f).toLowerCase()))
+    .sort();
+
+  if (sources.length === 0) {
+    console.log("– works/              (lewati — tools/works-src/ masih kosong)");
+    return;
+  }
+
+  fs.mkdirSync(WORKS_OUT, { recursive: true });
+  for (const file of sources) {
+    const stem = path.basename(file, path.extname(file));
+    const input = path.join(WORKS_SRC, file);
+    const output = path.join(WORKS_OUT, `${stem}.webp`);
+    im(
+      input,
+      "-auto-orient",
+      "-resize", "1400x1400>",
+      "-strip",
+      "-colorspace", "sRGB",
+      "-define", "webp:method=6",
+      "-quality", "82",
+      output
+    );
+    console.log(`✓ works/${stem}.webp   ${px(output)}   ${kb(size(input))} → ${kb(size(output))}`);
+  }
+}
+
+/* ---------------------------------------------- 3. ikon situs (favicon) ----- */
 
 function buildIcons(profile) {
   const S = 512;
@@ -161,7 +211,7 @@ function buildIcons(profile) {
   console.log(`✓ favicon.ico + favicon-32x32.png + apple-touch-icon.png   (huruf "${letter}")`);
 }
 
-/* --------------------------------------- 3. kartu preview OG 1200×630 ------- */
+/* --------------------------------------- 4. kartu preview OG 1200×630 ------- */
 
 function buildOgImage(profile) {
   const W = 1200;
@@ -262,6 +312,7 @@ const profile = readProfile();
 console.log(`Sumber data: ${profile.name}\n`);
 
 buildPortrait();
+buildWorks();
 buildIcons(profile);
 buildOgImage(profile);
 
