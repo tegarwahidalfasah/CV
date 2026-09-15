@@ -45,7 +45,12 @@ body {
   color: var(--color-navy-900);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  /* `hidden` membuat body jadi scroll container sehingga `position: sticky`
+     (judul samping di bagian Pengalaman & Organisasi) ikut macet.
+     `clip` mencegah geser horizontal tanpa efek samping itu; baris pertama
+     hanya cadangan untuk browser lama yang belum mengenal `clip`. */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -173,4 +178,38 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-6px);
+}
+
+/* Hormati setelan "kurangi gerakan" (prefers-reduced-motion) dari sistem operasi.
+   Animasi framer-motion diatur terpisah lewat <MotionConfig reducedMotion="user">
+   di App.tsx; di sini yang dimatikan adalah animasi CSS murni. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-marquee,
+  .animate-float-slow,
+  .animate-float-slower,
+  .animate-pulse-dot {
+    animation: none !important;
+  }
+
+  /* Sembunyikan salinan marquee kedua supaya daftar tidak tampak berlipat
+     ketika animasinya mati. */
+  .animate-marquee > *:last-child {
+    display: none;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

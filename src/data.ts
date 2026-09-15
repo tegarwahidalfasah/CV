@@ -13,6 +13,10 @@ export const profile = {
   locationShort: "Subang, Jawa Barat",
   phone: "0851-7435-3873",
   phoneHref: "tel:+6285174353873",
+  // Nomor yang sama dengan `phone`, tapi dalam format internasional tanpa "+" dan
+  // tanpa tanda baca (syarat tautan wa.me). Teks pembuka sudah di-encode.
+  whatsappHref:
+    "https://wa.me/6285174353873?text=Halo%20Tegar%2C%20saya%20tertarik%20untuk%20berkolaborasi%20kreatif.",
   email: "tegarwahidalfasah@gmail.com",
   instagram: "@tegarwahidalfasah",
   instagramHref: "https://instagram.com/tegarwahidalfasah",
@@ -164,6 +168,15 @@ export type Work = {
   client: string;
   category: string;
   image: string;
+  /**
+   * Tautan ke karya aslinya (postingan Instagram/TikTok).
+   *
+   * TODO: ganti setiap `href` di bawah dengan URL postingan karya Anda yang
+   * sebenarnya. Untuk sementara semuanya masih menunjuk ke profil Instagram.
+   * Jika tautan berisi "tiktok", label kartu otomatis berubah jadi
+   * "Lihat di TikTok" (lihat Works.tsx).
+   */
+  href: string;
 };
 
 export const works: Work[] = [
@@ -173,6 +186,7 @@ export const works: Work[] = [
     category: "Photography · Videography",
     image:
       "https://images.pexels.com/photos/12757209/pexels-photo-12757209.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
+    href: "https://instagram.com/tegarwahidalfasah",
   },
   {
     title: "Golden Hour Frames",
@@ -180,6 +194,7 @@ export const works: Work[] = [
     category: "Videography · Editor",
     image:
       "https://images.pexels.com/photos/36920917/pexels-photo-36920917.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
+    href: "https://instagram.com/tegarwahidalfasah",
   },
   {
     title: "Potret & Visual Storytelling",
@@ -187,6 +202,7 @@ export const works: Work[] = [
     category: "Foto Dokumentasi",
     image:
       "https://images.pexels.com/photos/31681666/pexels-photo-31681666.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=800",
+    href: "https://instagram.com/tegarwahidalfasah",
   },
   {
     title: "Dokumentasi Wisata Alam",
@@ -194,6 +210,7 @@ export const works: Work[] = [
     category: "Dokumentasi",
     image:
       "https://images.pexels.com/photos/29546725/pexels-photo-29546725.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
+    href: "https://instagram.com/tegarwahidalfasah",
   },
   {
     title: "Behind the Scenes Produksi",
@@ -201,6 +218,7 @@ export const works: Work[] = [
     category: "Video Production",
     image:
       "https://images.pexels.com/photos/34037222/pexels-photo-34037222.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
+    href: "https://instagram.com/tegarwahidalfasah",
   },
   {
     title: "Desain Konten & Visual Identity",
@@ -208,6 +226,7 @@ export const works: Work[] = [
     category: "Desain · Sosial Media",
     image:
       "https://images.pexels.com/photos/3850210/pexels-photo-3850210.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
+    href: "https://instagram.com/tegarwahidalfasah",
   },
 ];
 

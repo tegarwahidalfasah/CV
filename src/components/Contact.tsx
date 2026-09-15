@@ -1,14 +1,16 @@
-import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { MessageCircle, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { Reveal, SectionLabel } from "./Reveal";
 import { profile } from "../data";
 import { InstagramIcon } from "./Icons";
 
 const cards = [
   {
-    label: "Telepon / WhatsApp",
+    // Sebelumnya kartu ini berlabel "WhatsApp" tetapi membuka tautan `tel:`,
+    // sehingga chat WhatsApp tidak pernah terbuka. Kini memakai wa.me.
+    label: "WhatsApp",
     value: profile.phone,
-    href: profile.phoneHref,
-    icon: Phone,
+    href: profile.whatsappHref,
+    icon: MessageCircle,
   },
   {
     label: "Instagram",
@@ -84,7 +86,7 @@ export function Contact() {
                     <Icon size={20} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-mono text-[11px] uppercase tracking-widest text-cream-100/45">
+                    <span className="block font-mono text-[11px] uppercase tracking-widest text-cream-100/60">
                       {card.label}
                     </span>
                     <span className="mt-1.5 block break-words font-display text-base font-semibold text-cream-50">

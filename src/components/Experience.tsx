@@ -51,7 +51,7 @@ export function Experience() {
                         <span className="rounded-full bg-brand-500/15 px-3.5 py-1 font-mono text-xs font-medium text-brand-300">
                           {job.period}
                         </span>
-                        <span className="font-mono text-xs text-cream-100/40">
+                        <span className="font-mono text-xs text-cream-100/60">
                           0{i + 1} / 0{experience.length}
                         </span>
                       </div>

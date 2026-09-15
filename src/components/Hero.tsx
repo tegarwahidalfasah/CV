@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, MapPin, Aperture, Mail } from "lucide-react";
 import { profile, disciplines } from "../data";
 import { InstagramIcon } from "./Icons";
-import portrait from "../assets/portrait.png";
+// Potret dihasilkan oleh `npm run assets` (tools/generate-assets.mjs).
+// Sumber aslinya: src/assets/portrait.png — jangan diubah namanya.
+import portrait from "../assets/portrait.webp";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -135,6 +137,10 @@ export function Hero() {
               <img
                 src={portrait}
                 alt="Potret Tegar Wahid Alfasah"
+                width={415}
+                height={554}
+                fetchPriority="high"
+                decoding="async"
                 className="aspect-[4/5] w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
@@ -149,7 +155,7 @@ export function Hero() {
                 <p className="font-display text-xs font-semibold text-cream-50">
                   Content Creator
                 </p>
-                <p className="font-mono text-[10px] text-cream-100/50">
+                <p className="font-mono text-[10px] text-cream-100/60">
                   Photo · Video · Design
                 </p>
               </div>
@@ -164,7 +170,7 @@ export function Hero() {
                 <p className="font-display text-xs font-semibold text-cream-50">
                   Based in
                 </p>
-                <p className="font-mono text-[10px] text-cream-100/50">
+                <p className="font-mono text-[10px] text-cream-100/60">
                   Subang, Jawa Barat
                 </p>
               </div>
@@ -176,12 +182,18 @@ export function Hero() {
       {/* Marquee */}
       <div className="marquee-mask relative border-t border-cream-100/10 bg-navy-900/60 py-4">
         <div className="flex w-max animate-marquee gap-0">
+          {/* Salinan kedua hanya untuk menyambung animasi; disembunyikan dari
+              pembaca layar agar daftarnya tidak terbaca dua kali. */}
           {[0, 1].map((dup) => (
-            <div key={dup} className="flex shrink-0 items-center">
+            <div
+              key={dup}
+              aria-hidden={dup === 1 ? true : undefined}
+              className="flex shrink-0 items-center"
+            >
               {disciplines.map((item) => (
                 <span
                   key={`${dup}-${item}`}
-                  className="flex items-center font-display text-sm font-medium uppercase tracking-[0.2em] text-cream-100/45"
+                  className="flex items-center font-display text-sm font-medium uppercase tracking-[0.2em] text-cream-100/60"
                 >
                   <span className="px-7">{item}</span>
                   <span className="text-accent-400">✦</span>
