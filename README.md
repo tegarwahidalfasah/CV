@@ -35,6 +35,7 @@ src/
     Icons.tsx                  # ikon SVG kustom (Instagram, TikTok)
 tools/
   generate-assets.mjs          # generator aset (butuh ImageMagick)
+  works-src/                   # sumber gambar section Karya → src/assets/works/
   fonts/                       # font brand untuk generator + lisensi OFL
 public/                        # hasil generator: favicon.ico, favicon-32x32.png,
                                # apple-touch-icon.png, og-image.jpg
@@ -63,6 +64,16 @@ Skrip ini memerlukan **ImageMagick** (`convert` atau `magick`) di PATH, dan meng
 
 Jalankan ulang setiap kali foto potret atau nama/peran di `data.ts` berubah.
 
+## Gambar karya (`tools/works-src/`)
+
+Sumber gambar section Karya disimpan di **`tools/works-src/`**. Saat `npm run assets` dijalankan, setiap berkas di sana (`jpg`/`jpeg`/`png`/`webp`) dikompres menjadi **`src/assets/works/<nama>.webp`** (maks. 1400 px, kualitas 82).
+
+1. Taruh foto/screenshot karya di `tools/works-src/`, beri nama mengikuti urutan kartu di `data.ts` (mis. `01-adventure.jpg` … `06-design.jpg`).
+2. Jalankan `npm run assets`.
+3. Arahkan properti `image` tiap karya di `data.ts` ke berkas hasil generate-nya (lihat `tools/works-src/README.md` untuk tabel penamaan).
+
+Folder yang kosong/absen tidak masalah — generator melompatinya dan aset lain tetap dihasilkan.
+
 ## Domain & SEO
 
 Domain situs ini sudah diisi: **https://portofolio-tegarwahidalfasah.netlify.app** (ada di `canonical`, `og:url`, `og:image`, `twitter:image`, dan JSON-LD di `index.html`).
@@ -73,7 +84,14 @@ Urutan prioritas bila kustom domain dipakai: daftarkan domain di Netlify → akt
 
 ## Tautan karya
 
-Setiap entri di `works` (`src/data.ts`) punya properti `href` yang menunjuk ke postingan karya asli. Saat ini semuanya masih menunjuk ke profil Instagram — ganti dengan URL postingan masing-masing karya. Jika URL berisi `tiktok`, label kartu otomatis berubah menjadi "Lihat di TikTok".
+Setiap entri di `works` (`src/data.ts`) punya properti `href` yang menunjuk ke postingan karya asli. Ganti dengan URL postingan masing-masing karya (contoh `https://www.instagram.com/p/CODE/`). Jika URL berisi `tiktok`, label kartu otomatis berubah menjadi "Lihat di TikTok".
+
+### Mode embed
+
+`worksEmbedMode` di `src/data.ts` menentukan tampilan section Karya:
+
+- `true` — kartu merender postingan Instagram aslinya lewat embed iframe (hanya untuk `href` berupa URL postingan, `/p/…` atau `/reel/…`); tautan profil tetap tampil sebagai gambar statis.
+- `false` — kartu menampilkan gambar statis dari pipeline `tools/works-src/` dalam tata letak bento.
 
 ## Catatan tema
 

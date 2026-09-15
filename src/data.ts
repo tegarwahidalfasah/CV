@@ -170,14 +170,23 @@ export type Work = {
   image: string;
   /**
    * Tautan ke karya aslinya (postingan Instagram/TikTok).
-   *
-   * TODO: ganti setiap `href` di bawah dengan URL postingan karya Anda yang
-   * sebenarnya. Untuk sementara semuanya masih menunjuk ke profil Instagram.
+   * Embed (mode `worksEmbedMode`) hanya berlaku untuk URL postingan
+   * (`/p/…` atau `/reel/…`); tautan profil tampil sebagai gambar statis.
    * Jika tautan berisi "tiktok", label kartu otomatis berubah jadi
    * "Lihat di TikTok" (lihat Works.tsx).
    */
   href: string;
 };
+
+/**
+ * Mode tampilan section Karya:
+ * - `true`  → kartu merender postingan Instagram aslinya (embed via iframe).
+ * - `false` → kartu menampilkan gambar statis (output `npm run assets`).
+ *
+ * Embed hanya berlaku untuk `href` berupa URL postingan Instagram
+ * (`/p/…` atau `/reel/…`) — tautan profil tetap tampil sebagai gambar statis.
+ */
+export const worksEmbedMode = true;
 
 export const works: Work[] = [
   {
@@ -186,7 +195,7 @@ export const works: Work[] = [
     category: "Photography · Videography",
     image:
       "https://images.pexels.com/photos/12757209/pexels-photo-12757209.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
-    href: "https://instagram.com/tgar212",
+    href: "https://www.instagram.com/p/CndXH6PSHgW/",
   },
   {
     title: "Golden Hour Frames",
@@ -194,7 +203,7 @@ export const works: Work[] = [
     category: "Videography · Editor",
     image:
       "https://images.pexels.com/photos/36920917/pexels-photo-36920917.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
-    href: "https://instagram.com/tgar212",
+    href: "https://www.instagram.com/p/CnAOziCSY7O/",
   },
   {
     title: "Potret & Visual Storytelling",
@@ -202,7 +211,7 @@ export const works: Work[] = [
     category: "Foto Dokumentasi",
     image:
       "https://images.pexels.com/photos/31681666/pexels-photo-31681666.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=800",
-    href: "https://instagram.com/tgar212",
+    href: "https://www.instagram.com/p/Cduwhlhpjrv/",
   },
   {
     title: "Dokumentasi Wisata Alam",
@@ -210,7 +219,7 @@ export const works: Work[] = [
     category: "Dokumentasi",
     image:
       "https://images.pexels.com/photos/29546725/pexels-photo-29546725.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
-    href: "https://instagram.com/tgar212",
+    href: "https://www.instagram.com/p/CZVY1JgPkzN/",
   },
   {
     title: "Behind the Scenes Produksi",
@@ -218,7 +227,7 @@ export const works: Work[] = [
     category: "Video Production",
     image:
       "https://images.pexels.com/photos/34037222/pexels-photo-34037222.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
-    href: "https://instagram.com/tgar212",
+    href: "https://www.instagram.com/p/CU7Y4tRlz3r/",
   },
   {
     title: "Desain Konten & Visual Identity",
@@ -226,7 +235,7 @@ export const works: Work[] = [
     category: "Desain · Sosial Media",
     image:
       "https://images.pexels.com/photos/3850210/pexels-photo-3850210.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
-    href: "https://instagram.com/tgar212",
+    href: "https://www.instagram.com/p/CUB9EXtFRzt/",
   },
 ];
 

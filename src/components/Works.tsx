@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, SectionLabel } from "./Reveal";
-import { works } from "../data";
+import { works, worksEmbedMode } from "../data";
 
 // Bento arrangement: wide, tall(rows 1-2), then four tiles, last wide
 const layout = [
@@ -21,7 +21,24 @@ function platformOf(href: string) {
     : { label: "Lihat di Instagram", short: "Instagram" };
 }
 
+/**
+ * Ubah URL postingan Instagram (`…/p/CODE/` atau `…/reel/CODE/`) menjadi URL
+ * embed-nya yang bisa dirender langsung dalam `<iframe>` (tanpa API/widget).
+ * Mengembalikan `null` untuk tautan yang bukan postingan (mis. profil).
+ */
+function instagramEmbedUrl(href: string): string | null {
+  const m = href.match(/instagram\.com\/(p|reel)\/([A-Za-z0-9_-]+)/i);
+  return m ? `https://www.instagram.com/${m[1].toLowerCase()}/${m[2]}/embed/` : null;
+}
+
 export function Works() {
+  // Mode embed memakai grid seragam yang lebih tinggi agar iframe postingan
+  // muat; bento tetap dipakai untuk mode gambar statis.
+  const embedActive = worksEmbedMode;
+  const grid = embedActive
+    ? "mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+    : "mt-14 grid grid-cols-1 gap-5 lg:h-[660px] lg:grid-cols-3 lg:grid-rows-3";
+
   return (
     <section id="karya" className="relative bg-cream-100 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -48,14 +65,15 @@ export function Works() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="mt-14 grid grid-cols-1 gap-5 lg:h-[660px] lg:grid-cols-3 lg:grid-rows-3">
+          <div className={grid}>
             {order.map((workIndex, layoutIndex) => {
               const work = works[workIndex];
               const platform = platformOf(work.href);
+              const embedUrl = embedActive ? instagramEmbedUrl(work.href) : null;
               return (
                 <article
                   key={work.title}
-                  className={`card-hover group relative overflow-hidden rounded-3xl border border-navy-900/10 bg-navy-900 shadow-sm hover:shadow-xl focus-within:shadow-xl ${layout[layoutIndex]} ${heights[layoutIndex]} lg:h-auto`}
+                  className={`card-hover group relative overflow-hidden rounded-3xl border border-navy-900/10 bg-navy-900 shadow-sm hover:shadow-xl focus-within:shadow-xl ${embedActive ? "h-[440px] sm:h-[480px]" : `${layout[layoutIndex]} ${heights[layoutIndex]} lg:h-auto`}`}
                 >
                   {/* Seluruh kartu bisa diklik: tautan direntangkan menutupi kartu,
                       sehingga tetap satu tautan yang rapi untuk keyboard & pembaca layar. */}
@@ -64,7 +82,7 @@ export function Works() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`${work.title} — ${work.client} (buka ${platform.short} di tab baru)`}
-                    className="absolute inset-0 z-20 rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+                    className="absolute inset-0 z-30 rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
                   />
 
                   <img
@@ -73,14 +91,31 @@ export function Works() {
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-95" />
 
-                  <div className="absolute right-4 top-4 z-10 flex -translate-y-2 items-center gap-1.5 rounded-full bg-accent-500 px-3.5 py-2 font-display text-xs font-semibold text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                  {embedUrl && (
+                    /* Postingan asli (embed iframe). Gambar di belakangnya
+                       menjadi cadangan bila embed gagal memuat. pointer-events
+                       dimatikan supaya anchor di atas tetap satu-satunya
+                       tautan interaktif kartu. */
+                    <iframe
+                      src={embedUrl}
+                      title={`${work.title} — postingan Instagram`}
+                      loading="lazy"
+                      scrolling="no"
+                      aria-hidden="true"
+                      referrerPolicy="no-referrer"
+                      className="pointer-events-none absolute inset-0 z-[5] h-full w-full border-0"
+                    />
+                  )}
+
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-95" />
+
+                  <div className="absolute right-4 top-4 z-20 flex -translate-y-2 items-center gap-1.5 rounded-full bg-accent-500 px-3.5 py-2 font-display text-xs font-semibold text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
                     {platform.short}
                     <ArrowUpRight size={15} aria-hidden="true" />
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 p-6">
+                  <div className="absolute inset-x-0 bottom-0 z-20 p-6">
                     <span className="inline-block rounded-full bg-brand-500 px-3 py-1 font-body text-[10px] font-medium uppercase tracking-wider text-white">
                       {work.category}
                     </span>
