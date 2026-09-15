@@ -59,11 +59,13 @@ Skrip ini memerlukan **ImageMagick** (`convert` atau `magick`) di PATH, dan meng
 
 Jalankan ulang setiap kali foto potret atau nama/peran di `data.ts` berubah.
 
-## ⚠ Sebelum dipublikasikan
+## Domain & SEO
 
-Ganti semua `https://domain-anda.com` di **`index.html`** dengan URL asli situs ini (ada di `canonical`, `og:url`, `og:image`, `twitter:image`, dan JSON-LD). Tanpa itu, kartu preview saat link dibagikan ke WhatsApp/Instagram/LinkedIn tidak akan muncul.
+Domain situs ini sudah diisi: **https://portofolio-tegarwahidalfasah.netlify.app** (ada di `canonical`, `og:url`, `og:image`, `twitter:image`, dan JSON-LD di `index.html`).
 
-Catatan: `og:image` wajib berupa URL absolut — crawler tidak bisa membaca path relatif.
+Jika nanti pindah ke domain sendiri (mis. `tegarwahidalfasah.com`), ganti **semua** URL tersebut. `og:image` wajib berupa URL absolut — crawler WhatsApp/Instagram/LinkedIn tidak bisa membaca path relatif, dan bila URL-nya salah maka kartu preview tidak akan muncul sama sekali.
+
+Urutan prioritas bila kustom domain dipakai: daftarkan domain di Netlify → aktifkan HTTPS → baru perbarui `index.html`.
 
 ## Tautan karya
 
