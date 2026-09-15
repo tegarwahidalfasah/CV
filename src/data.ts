@@ -235,7 +235,7 @@ export const works: Work[] = [
     category: "Desain · Sosial Media",
     image:
       "https://images.pexels.com/photos/3850210/pexels-photo-3850210.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200",
-    href: "https://instagram.com/tgar212",
+    href: "https://www.instagram.com/p/CUB9EXtFRzt/",
   },
 ];
 
