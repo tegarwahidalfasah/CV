@@ -1,4 +1,4 @@
-import { Users, ArrowUpRight } from "lucide-react";
+import { Users } from "lucide-react";
 import { Reveal, SectionLabel } from "./Reveal";
 import { organizations } from "../data";
 
@@ -41,7 +41,7 @@ export function Organizations() {
                         : ""
                     } hover:bg-navy-900`}
                   >
-                    <span className="font-mono text-sm text-navy-400 transition-colors group-hover:text-brand-400">
+                    <span className="font-mono text-sm text-navy-500 transition-colors group-hover:text-brand-300">
                       0{i + 1}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -51,16 +51,20 @@ export function Organizations() {
                       <p className="mt-0.5 text-sm text-navy-600 transition-colors group-hover:text-cream-100/70">
                         {org.role}
                       </p>
-                      <p className="mt-1.5 font-mono text-[11px] text-navy-500 transition-colors group-hover:text-cream-100/50 sm:hidden">
+                      <p className="mt-1.5 font-mono text-[11px] text-navy-600 transition-colors group-hover:text-cream-100/60 sm:hidden">
                         {org.period}
                       </p>
                     </div>
-                    <span className="hidden shrink-0 font-mono text-xs text-navy-500 transition-colors group-hover:text-cream-100/60 sm:block">
+                    <span className="hidden shrink-0 font-mono text-xs text-navy-600 transition-colors group-hover:text-cream-100/60 sm:block">
                       {org.period}
                     </span>
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-navy-900/15 text-navy-900 transition-all duration-300 group-hover:border-accent-400 group-hover:bg-accent-500 group-hover:text-white">
-                      <ArrowUpRight size={16} />
-                    </span>
+                    {/* Penanda kecil, bukan tombol: kartu organisasi memang tidak
+                        menautkan ke mana pun. Sebelumnya di sini ada ikon panah
+                        yang terlihat bisa diklik padahal bukan tautan. */}
+                    <span
+                      aria-hidden="true"
+                      className="h-2.5 w-2.5 shrink-0 rounded-full border border-navy-900/20 bg-transparent transition-colors duration-300 group-hover:border-accent-400 group-hover:bg-accent-500"
+                    />
                   </article>
                 </Reveal>
               ))}

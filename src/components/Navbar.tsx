@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { profile } from "../data";
@@ -15,6 +15,8 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28);
@@ -27,6 +29,49 @@ export function Navbar() {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  /* Menu mobile: kunci fokus di dalam panel, tutup dengan Escape, dan
+     kembalikan fokus ke tombol pembuka saat ditutup. */
+  useEffect(() => {
+    if (!open) return;
+
+    const panel = panelRef.current;
+    panel?.querySelector<HTMLElement>("button, a[href]")?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (event.key !== "Tab" || !panel) return;
+
+      const focusable = Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      // Siklus fokus: Tab dari elemen terakhir kembali ke elemen pertama, dst.
+      if (event.shiftKey && (active === first || !panel.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      triggerRef.current?.focus();
     };
   }, [open]);
 
@@ -74,11 +119,16 @@ export function Navbar() {
               />
             </a>
             <button
+              ref={triggerRef}
+              type="button"
               onClick={() => setOpen(true)}
-              aria-label="Buka menu"
+              aria-label="Buka menu navigasi"
+              aria-haspopup="dialog"
+              aria-expanded={open}
+              aria-controls="menu-mobile"
               className="flex h-10 w-10 items-center justify-center rounded-xl border border-cream-100/20 text-cream-50 lg:hidden"
             >
-              <Menu size={20} />
+              <Menu size={20} aria-hidden="true" />
             </button>
           </div>
         </nav>
@@ -87,6 +137,11 @@ export function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
+            ref={panelRef}
+            id="menu-mobile"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu navigasi"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -98,11 +153,12 @@ export function Navbar() {
                 {profile.initials}
               </span>
               <button
+                type="button"
                 onClick={() => setOpen(false)}
-                aria-label="Tutup menu"
+                aria-label="Tutup menu navigasi"
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-cream-100/20 text-cream-50"
               >
-                <X size={20} />
+                <X size={20} aria-hidden="true" />
               </button>
             </div>
 
@@ -137,7 +193,7 @@ export function Navbar() {
               >
                 {profile.email}
               </a>
-              <p className="text-center text-xs text-cream-100/50">
+              <p className="text-center text-xs text-cream-100/60">
                 {profile.locationShort}
               </p>
             </div>

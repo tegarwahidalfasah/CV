@@ -24,7 +24,7 @@ export function Footer() {
                 Tegar Wahid Alfasah
               </span>
             </a>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-cream-100/50">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-cream-100/60">
               Content creator, desainer, fotografer & videografer asal Subang,
               Jawa Barat.
             </p>
@@ -81,7 +81,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-cream-100/10 pt-6 text-xs text-cream-100/40 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-cream-100/10 pt-6 text-xs text-cream-100/60 sm:flex-row sm:items-center">
           <p>© 2026 Tegar Wahid Alfasah. Seluruh hak cipta dilindungi.</p>
           <p className="font-mono">
             Designed &amp; built with creativity{" "}

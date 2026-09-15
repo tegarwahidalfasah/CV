@@ -14,6 +14,13 @@ const layout = [
 const order = [0, 2, 3, 4, 1, 5];
 const heights = ["h-64", "h-96", "h-64", "h-64", "h-64", "h-64"];
 
+/** Label + ikon menyesuaikan platform pada tautan karya (Instagram/TikTok). */
+function platformOf(href: string) {
+  return href.includes("tiktok")
+    ? { label: "Lihat di TikTok", short: "TikTok" }
+    : { label: "Lihat di Instagram", short: "Instagram" };
+}
+
 export function Works() {
   return (
     <section id="karya" className="relative bg-cream-100 py-24 sm:py-32">
@@ -44,21 +51,33 @@ export function Works() {
           <div className="mt-14 grid grid-cols-1 gap-5 lg:h-[660px] lg:grid-cols-3 lg:grid-rows-3">
             {order.map((workIndex, layoutIndex) => {
               const work = works[workIndex];
+              const platform = platformOf(work.href);
               return (
                 <article
                   key={work.title}
-                  className={`card-hover group relative overflow-hidden rounded-3xl border border-navy-900/10 bg-navy-900 shadow-sm hover:shadow-xl ${layout[layoutIndex]} ${heights[layoutIndex]} lg:h-auto`}
+                  className={`card-hover group relative overflow-hidden rounded-3xl border border-navy-900/10 bg-navy-900 shadow-sm hover:shadow-xl focus-within:shadow-xl ${layout[layoutIndex]} ${heights[layoutIndex]} lg:h-auto`}
                 >
+                  {/* Seluruh kartu bisa diklik: tautan direntangkan menutupi kartu,
+                      sehingga tetap satu tautan yang rapi untuk keyboard & pembaca layar. */}
+                  <a
+                    href={work.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${work.title} — ${work.client} (buka ${platform.short} di tab baru)`}
+                    className="absolute inset-0 z-20 rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+                  />
+
                   <img
                     src={work.image}
                     alt={work.title}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-95" />
 
-                  <div className="absolute right-4 top-4 flex h-10 w-10 -translate-y-2 items-center justify-center rounded-full bg-accent-500 text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                    <ArrowUpRight size={18} />
+                  <div className="absolute right-4 top-4 z-10 flex -translate-y-2 items-center gap-1.5 rounded-full bg-accent-500 px-3.5 py-2 font-display text-xs font-semibold text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                    {platform.short}
+                    <ArrowUpRight size={15} aria-hidden="true" />
                   </div>
 
                   <div className="absolute inset-x-0 bottom-0 p-6">

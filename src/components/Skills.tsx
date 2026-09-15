@@ -49,14 +49,14 @@ export function Skills() {
                   <h3 className="relative mt-6 font-display text-xl font-semibold text-cream-50">
                     {tool.name}
                   </h3>
-                  <p className="relative mt-3 text-sm leading-relaxed text-cream-100/55">
+                  <p className="relative mt-3 text-sm leading-relaxed text-cream-100/60">
                     {tool.description}
                   </p>
                   <div className="relative mt-5 flex flex-wrap gap-1.5">
                     {tool.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-cream-100/10 px-2.5 py-1 font-mono text-[10px] text-cream-100/50"
+                        className="rounded-full border border-cream-100/10 px-2.5 py-1 font-mono text-[10px] text-cream-100/60"
                       >
                         {tag}
                       </span>
