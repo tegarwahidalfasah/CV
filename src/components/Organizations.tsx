@@ -18,7 +18,7 @@ export function Organizations() {
               </span>
               <h2 className="mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-navy-900 sm:text-5xl">
                 Pengalaman{" "}
-                <span className="font-accent font-normal italic text-brand-600">
+                <span className="font-body font-normal italic text-brand-600">
                   berorganisasi
                 </span>
               </h2>
@@ -41,7 +41,7 @@ export function Organizations() {
                         : ""
                     } hover:bg-navy-900`}
                   >
-                    <span className="font-mono text-sm text-navy-500 transition-colors group-hover:text-brand-300">
+                    <span className="font-body text-sm text-navy-500 transition-colors group-hover:text-brand-300">
                       0{i + 1}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -51,11 +51,11 @@ export function Organizations() {
                       <p className="mt-0.5 text-sm text-navy-600 transition-colors group-hover:text-cream-100/70">
                         {org.role}
                       </p>
-                      <p className="mt-1.5 font-mono text-[11px] text-navy-600 transition-colors group-hover:text-cream-100/60 sm:hidden">
+                      <p className="mt-1.5 font-body text-[11px] text-navy-600 transition-colors group-hover:text-cream-100/60 sm:hidden">
                         {org.period}
                       </p>
                     </div>
-                    <span className="hidden shrink-0 font-mono text-xs text-navy-600 transition-colors group-hover:text-cream-100/60 sm:block">
+                    <span className="hidden shrink-0 font-body text-xs text-navy-600 transition-colors group-hover:text-cream-100/60 sm:block">
                       {org.period}
                     </span>
                     {/* Penanda kecil, bukan tombol: kartu organisasi memang tidak

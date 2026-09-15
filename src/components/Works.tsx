@@ -33,7 +33,7 @@ export function Works() {
           <Reveal delay={0.05}>
             <h2 className="max-w-xl font-display text-4xl font-bold leading-tight tracking-tight text-navy-900 sm:text-5xl">
               Cuplikan{" "}
-              <span className="font-accent font-normal italic text-brand-600">
+              <span className="font-body font-normal italic text-brand-600">
                 bidang karya
               </span>{" "}
               saya
@@ -81,7 +81,7 @@ export function Works() {
                   </div>
 
                   <div className="absolute inset-x-0 bottom-0 p-6">
-                    <span className="inline-block rounded-full bg-brand-500 px-3 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-white">
+                    <span className="inline-block rounded-full bg-brand-500 px-3 py-1 font-body text-[10px] font-medium uppercase tracking-wider text-white">
                       {work.category}
                     </span>
                     <h3 className="mt-3 font-display text-xl font-semibold leading-snug text-cream-50">

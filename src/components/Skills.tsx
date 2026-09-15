@@ -23,7 +23,7 @@ export function Skills() {
           <Reveal delay={0.05}>
             <h2 className="max-w-xl font-display text-4xl font-bold leading-tight tracking-tight text-cream-50 sm:text-5xl">
               Tools yang saya{" "}
-              <span className="font-accent font-normal italic text-brand-400">
+              <span className="font-body font-normal italic text-brand-400">
                 kuasai
               </span>
             </h2>
@@ -56,7 +56,7 @@ export function Skills() {
                     {tool.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-cream-100/10 px-2.5 py-1 font-mono text-[10px] text-cream-100/60"
+                        className="rounded-full border border-cream-100/10 px-2.5 py-1 font-body text-[10px] text-cream-100/60"
                       >
                         {tag}
                       </span>

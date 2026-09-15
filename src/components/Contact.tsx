@@ -43,7 +43,7 @@ export function Contact() {
           <Reveal delay={0.05}>
             <h2 className="mx-auto max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-tight text-cream-50 sm:text-7xl">
               Mari{" "}
-              <span className="font-accent font-normal italic text-accent-400">
+              <span className="font-body font-normal italic text-accent-400">
                 berkolaborasi
               </span>{" "}
               dan berkarya bersama.
@@ -86,7 +86,7 @@ export function Contact() {
                     <Icon size={20} />
                   </span>
                   <span className="min-w-0">
-                    <span className="block font-mono text-[11px] uppercase tracking-widest text-cream-100/60">
+                    <span className="block font-body text-[11px] uppercase tracking-widest text-cream-100/60">
                       {card.label}
                     </span>
                     <span className="mt-1.5 block break-words font-display text-base font-semibold text-cream-50">
