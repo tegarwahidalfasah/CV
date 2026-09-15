@@ -29,7 +29,7 @@ export function Education() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-900 text-brand-400">
                     <GraduationCap size={22} />
                   </span>
-                  <span className="rounded-full border border-navy-900/15 bg-cream-50 px-4 py-1.5 font-mono text-xs font-medium text-navy-700">
+                  <span className="rounded-full border border-navy-900/15 bg-cream-50 px-4 py-1.5 font-body text-xs font-medium text-navy-700">
                     {edu.period}
                   </span>
                 </div>

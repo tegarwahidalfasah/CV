@@ -37,7 +37,7 @@ export function Hero() {
             className="inline-flex items-center gap-2.5 rounded-full border border-cream-100/15 bg-cream-100/5 px-4 py-1.5"
           >
             <span className="animate-pulse-dot h-2 w-2 rounded-full bg-accent-400" />
-            <span className="font-mono text-xs tracking-wide text-cream-100/80">
+            <span className="font-body text-xs tracking-wide text-cream-100/80">
               Terbuka untuk kolaborasi & proyek kreatif
             </span>
           </motion.div>
@@ -59,7 +59,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.22, ease }}
             className="mt-6 max-w-xl text-base leading-relaxed text-cream-100/70 sm:text-lg"
           >
-            <span className="font-accent text-2xl italic text-gradient">
+            <span className="font-body text-2xl italic text-gradient">
               {profile.tagline}
             </span>
             <br />
@@ -155,7 +155,7 @@ export function Hero() {
                 <p className="font-display text-xs font-semibold text-cream-50">
                   Content Creator
                 </p>
-                <p className="font-mono text-[10px] text-cream-100/60">
+                <p className="font-body text-[10px] text-cream-100/60">
                   Photo · Video · Design
                 </p>
               </div>
@@ -170,7 +170,7 @@ export function Hero() {
                 <p className="font-display text-xs font-semibold text-cream-50">
                   Based in
                 </p>
-                <p className="font-mono text-[10px] text-cream-100/60">
+                <p className="font-body text-[10px] text-cream-100/60">
                   Subang, Jawa Barat
                 </p>
               </div>

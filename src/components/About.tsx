@@ -15,7 +15,7 @@ export function About() {
             <Reveal delay={0.05}>
               <h2 className="font-display text-4xl font-bold leading-[1.08] tracking-tight text-navy-900 sm:text-5xl">
                 Bercerita lewat{" "}
-                <span className="font-accent font-normal italic text-brand-600">
+                <span className="font-body font-normal italic text-brand-600">
                   desain, foto
                 </span>{" "}
                 &amp; video.
@@ -33,7 +33,7 @@ export function About() {
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-500/15 text-accent-600">
                   <Quote size={18} />
                 </span>
-                <p className="font-accent text-2xl italic leading-snug text-navy-800">
+                <p className="font-body text-2xl italic leading-snug text-navy-800">
                   “Kreativitas bukan sekadar hobi — itu adalah perjalanan yang
                   saya bangun sejak SMP hingga ke bangku kuliah.”
                 </p>
@@ -43,7 +43,7 @@ export function About() {
             <Reveal delay={0.24}>
               <dl className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="rounded-2xl border border-navy-900/10 bg-cream-100 p-5">
-                  <dt className="font-mono text-[11px] uppercase tracking-widest text-navy-500">
+                  <dt className="font-body text-[11px] uppercase tracking-widest text-navy-500">
                     Fokus Saat Ini
                   </dt>
                   <dd className="mt-1.5 font-display text-base font-semibold text-navy-900">
@@ -51,7 +51,7 @@ export function About() {
                   </dd>
                 </div>
                 <div className="rounded-2xl border border-navy-900/10 bg-cream-100 p-5">
-                  <dt className="font-mono text-[11px] uppercase tracking-widest text-navy-500">
+                  <dt className="font-body text-[11px] uppercase tracking-widest text-navy-500">
                     Status
                   </dt>
                   <dd className="mt-1.5 font-display text-base font-semibold text-navy-900">

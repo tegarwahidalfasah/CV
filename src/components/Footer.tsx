@@ -83,7 +83,7 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-cream-100/10 pt-6 text-xs text-cream-100/60 sm:flex-row sm:items-center">
           <p>© 2026 Tegar Wahid Alfasah. Seluruh hak cipta dilindungi.</p>
-          <p className="font-mono">
+          <p className="font-body">
             Designed &amp; built with creativity{" "}
             <span className="text-accent-400">✦</span>
           </p>

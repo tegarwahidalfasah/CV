@@ -175,7 +175,7 @@ export function Navbar() {
                     onClick={() => setOpen(false)}
                     className="group flex items-baseline gap-4 border-b border-cream-100/10 py-4"
                   >
-                    <span className="font-mono text-xs text-brand-400">
+                    <span className="font-body text-xs text-brand-400">
                       0{i + 1}
                     </span>
                     <span className="font-display text-3xl font-semibold text-cream-50 transition-colors group-hover:text-brand-400">

@@ -79,7 +79,7 @@ Palet warna, font, dan animasi kustom didefinisikan di blok `@theme` pada `src/i
 - `cream-*` — permukaan terang
 - `brand-*` — aksen biru (utama)
 - `accent-*` — aksen ungu (sekunder)
-- Font: `Space Grotesk` (display), `Inter` (body), `Instrument Serif` (aksen italic), `JetBrains Mono` (mono)
+- Font: hanya **dua** keluarga — `Space Grotesk` (judul/`font-display`) dan `Inter` (teks, label kecil, dan kata aksen italic/`font-body`). Tidak ada lagi token `font-accent`/`font-mono`; hierarki dibedakan lewat bobot, ukuran, tracking, dan italic. Dimuat dari Google Fonts lewat satu `@import` di baris pertama `src/index.css`.
 
 Teks abu-abu di atas permukaan gelap memakai minimal `text-cream-100/60` agar tetap lolos kontras WCAG AA (4.5:1).
 

@@ -39,7 +39,7 @@ export function SectionLabel({
   return (
     <div className={`flex items-center gap-4 ${className}`}>
       <span
-        className={`font-mono text-sm tracking-tight ${
+        className={`font-body text-sm tracking-tight ${
           isDark ? "text-brand-400" : "text-brand-600"
         }`}
       >

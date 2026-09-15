@@ -20,7 +20,7 @@ export function Experience() {
             <div className="lg:sticky lg:top-28">
               <h2 className="font-display text-4xl font-bold leading-tight tracking-tight text-cream-50 sm:text-5xl">
                 Perjalanan{" "}
-                <span className="font-accent font-normal italic text-brand-400">
+                <span className="font-body font-normal italic text-brand-400">
                   berkarya
                 </span>
               </h2>
@@ -48,10 +48,10 @@ export function Experience() {
 
                     <div className="card-hover h-full rounded-3xl border border-cream-100/10 bg-navy-900 p-7 hover:border-brand-500/40 sm:p-8">
                       <div className="flex flex-wrap items-center justify-between gap-3">
-                        <span className="rounded-full bg-brand-500/15 px-3.5 py-1 font-mono text-xs font-medium text-brand-300">
+                        <span className="rounded-full bg-brand-500/15 px-3.5 py-1 font-body text-xs font-medium text-brand-300">
                           {job.period}
                         </span>
-                        <span className="font-mono text-xs text-cream-100/60">
+                        <span className="font-body text-xs text-cream-100/60">
                           0{i + 1} / 0{experience.length}
                         </span>
                       </div>
