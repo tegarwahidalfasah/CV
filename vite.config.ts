@@ -16,4 +16,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    host: true,
+    port: 5173,
+    // Izinkan host preview sandbox (mis. 5173-<id>.e2b.app).
+    allowedHosts: [".e2b.app", "localhost"],
+  },
+  preview: {
+    host: true,
+    port: 4173,
+    allowedHosts: [".e2b.app", "localhost"],
+  },
 });
