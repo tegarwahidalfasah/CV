@@ -84,7 +84,14 @@ Urutan prioritas bila kustom domain dipakai: daftarkan domain di Netlify → akt
 
 ## Tautan karya
 
-Setiap entri di `works` (`src/data.ts`) punya properti `href` yang menunjuk ke postingan karya asli. Saat ini semuanya masih menunjuk ke profil Instagram — ganti dengan URL postingan masing-masing karya. Jika URL berisi `tiktok`, label kartu otomatis berubah menjadi "Lihat di TikTok".
+Setiap entri di `works` (`src/data.ts`) punya properti `href` yang menunjuk ke postingan karya asli. Ganti dengan URL postingan masing-masing karya (contoh `https://www.instagram.com/p/CODE/`). Jika URL berisi `tiktok`, label kartu otomatis berubah menjadi "Lihat di TikTok".
+
+### Mode embed
+
+`worksEmbedMode` di `src/data.ts` menentukan tampilan section Karya:
+
+- `true` — kartu merender postingan Instagram aslinya lewat embed iframe (hanya untuk `href` berupa URL postingan, `/p/…` atau `/reel/…`); tautan profil tetap tampil sebagai gambar statis.
+- `false` — kartu menampilkan gambar statis dari pipeline `tools/works-src/` dalam tata letak bento.
 
 ## Catatan tema
 

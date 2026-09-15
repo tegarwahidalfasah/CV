@@ -172,12 +172,23 @@ export type Work = {
    * Tautan ke karya aslinya (postingan Instagram/TikTok).
    *
    * TODO: ganti setiap `href` di bawah dengan URL postingan karya Anda yang
-   * sebenarnya. Untuk sementara semuanya masih menunjuk ke profil Instagram.
-   * Jika tautan berisi "tiktok", label kartu otomatis berubah jadi
-   * "Lihat di TikTok" (lihat Works.tsx).
+   * sebenarnya, contoh `https://www.instagram.com/p/CODE/` (bukan URL profil).
+   * Selama masih menunjuk ke profil, kartu itu otomatis tampil sebagai gambar
+   * statis meskipun mode embed aktif. Jika tautan berisi "tiktok", label
+   * kartu otomatis berubah jadi "Lihat di TikTok" (lihat Works.tsx).
    */
   href: string;
 };
+
+/**
+ * Mode tampilan section Karya:
+ * - `true`  → kartu merender postingan Instagram aslinya (embed via iframe).
+ * - `false` → kartu menampilkan gambar statis (output `npm run assets`).
+ *
+ * Embed hanya berlaku untuk `href` berupa URL postingan Instagram
+ * (`/p/…` atau `/reel/…`) — tautan profil tetap tampil sebagai gambar statis.
+ */
+export const worksEmbedMode = false;
 
 export const works: Work[] = [
   {
